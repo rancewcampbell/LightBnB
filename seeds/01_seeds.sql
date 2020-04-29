@@ -15,3 +15,9 @@ INSERT INTO reservations (start_date, end_date, property_id, guest_id) VALUES
 ('2020-04-27', '2020-05-3', 1, 3),
 ('2021-02-13', '2021-02-22', 3, 1),
 ('2020-06-01', '2020-06-04', 2, 4);
+
+INSERT INTO property_reviews (guest_id, property_id, reservation_id, rating, message) VALUES 
+(4, 4, 1, 2, 'Was not up to regular standards'),
+(3, 1, 2, 4, 'Great setup'),
+(1, 3, 3, 5, 'Amazing property!'),
+(4, 2, 4, 3, 'It was okay');
