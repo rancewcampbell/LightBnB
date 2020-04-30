@@ -7,24 +7,12 @@ const pool = new Pool({
   database: 'lightbnb'
 });
 
-const properties = require('./json/properties.json');
-const users = require('./json/users.json');
-
 /// Users
 
 /**
  * Get a single user from the database given their email.
  * @param {String} email The email of the user.
  * @return {Promise<{}>} A promise to the user.
- * 
- * 
- * return pool.query(`
-  SELECT *
-  FROM properties
-  LIMIT $1
-  `, [limit])
-  .then(res => res.rows);
- * 
  */
 const getUserWithEmail = function(email) {
   const queryString = 'SELECT * FROM users WHERE email = $1';
@@ -54,10 +42,6 @@ exports.getUserWithId = getUserWithId;
  * @return {Promise<{}>} A promise to the user.
  */
 const addUser =  function(user) {
-  // const userId = Object.keys(users).length + 1;
-  // user.id = userId;
-  // users[userId] = user;
-  // return Promise.resolve(user);
   const queryString = `INSERT INTO users (name, email, password) 
   VALUES ($1, $2, $3) 
   RETURNING *`;
@@ -144,22 +128,6 @@ exports.getAllProperties = getAllProperties;
  * Add a property to the database
  * @param {{}} property An object containing all of the property details.
  * @return {Promise<{}>} A promise to the property.
- * {
-  owner_id: int,
-  title: string,
-  description: string,
-  thumbnail_photo_url: string,
-  cover_photo_url: string,
-  cost_per_night: string,
-  street: string,
-  city: string,
-  province: string,
-  post_code: string,
-  country: string,
-  parking_spaces: int,
-  number_of_bathrooms: int,
-  number_of_bedrooms: int
-}
  */
 const addProperty = function(property) {
   const queryString = `
