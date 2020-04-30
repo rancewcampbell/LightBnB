@@ -58,11 +58,9 @@ const addUser =  function(user) {
   // user.id = userId;
   // users[userId] = user;
   // return Promise.resolve(user);
-  return pool.query(`
-  INSERT INTO users (name, email, password)
-  VALUES ($1, $2, $3)
-  RETURNING *
-  `, [user.name, user.email, user.string])
+  const text = 'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *';
+  const values = [user.name, user.email, user.password]
+  return pool.query(text, values)
   .then(res => res.rows[0]);
 }
 exports.addUser = addUser;
